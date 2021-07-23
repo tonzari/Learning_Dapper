@@ -19,11 +19,11 @@ namespace Runner
 
             //Insert_should_assign_identity_to_new_entity();
 
-            //Find_should_retrieve_existing_entity(7);
+            //Find_should_retrieve_existing_entity(4);
 
             //Modify_should_update_existing_entity(7);
 
-            Delete_should_remove_entity(3);
+            //Delete_should_remove_entity(3);
         }
 
         // TEST methods
@@ -130,7 +130,8 @@ namespace Runner
 
         private static IContactRepository CreateRepository()
         {
-            return new ContactRepository(config.GetConnectionString("DefaultConnection"));
+            // return new ContactRepository(config.GetConnectionString("DefaultConnection")); // Standard Dapper
+            return new ContactRepositoryContrib(config.GetConnectionString("DefaultConnection")); // Dapper.Contrib
         }
     }
 }

@@ -42,7 +42,7 @@ namespace DataLayer
 
         public void Remove(int id)
         {
-            this.db.Delete(new Contact { Id = id });
+            this.db.Delete(new Contact { Id = id }); // Delete() provided by Contrib. Creating a new Contact because it acts as an intermediary so the Delete() will work. This helps it go the right table, I believe.
         }
 
         public void Save(Contact contact)

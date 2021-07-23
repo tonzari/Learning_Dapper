@@ -13,10 +13,10 @@ namespace DataLayer
         public string Company { get; set; }
         public string Title { get; set; }
 
-        [Computed]
+        [Computed] // this attribute tells Dapper.Contrib ignore it when doing the SQL generation
         public bool IsNew => this.Id == default(int);
 
-        [Write(false)]
+        [Write(false)] // we don't want the Contrib SQL generation to attempt to insert it into the DB because there is no column called: Addresses
         public List<Address> Addresses { get; } = new List<Address>();
     }
 }
