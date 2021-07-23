@@ -21,10 +21,37 @@ namespace Runner
 
             //Find_should_retrieve_existing_entity(7);
 
-            Modify_should_update_existing_entity(7);
+            //Modify_should_update_existing_entity(7);
+
+            Delete_should_remove_entity(3);
         }
 
         // TEST methods
+
+        static void Delete_should_remove_entity(int id)
+        {
+            //arrange
+            IContactRepository repository = CreateRepository();
+
+            //act
+            var contactToRemove = repository.Find(id);
+            if (contactToRemove != null)
+            {
+                Console.WriteLine($"Deleting {contactToRemove.FirstName}...");
+                repository.Remove(id);
+            }
+
+            //rearrange verification
+            IContactRepository repositoryUpdated = CreateRepository();
+            var deletedContact = repositoryUpdated.Find(id);
+
+            //assert
+            if (deletedContact == null)
+            {
+                Console.WriteLine("**CONTACT DELETED**");
+            }
+        }
+
         static void Modify_should_update_existing_entity(int id)
         {
             //arrange
