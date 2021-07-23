@@ -19,10 +19,31 @@ namespace Runner
 
             //Insert_should_assign_identity_to_new_entity();
 
-            Find_should_retrieve_existing_entity(7);
+            //Find_should_retrieve_existing_entity(7);
+
+            Modify_should_update_existing_entity(7);
         }
 
         // TEST methods
+        static void Modify_should_update_existing_entity(int id)
+        {
+            //arrange
+            IContactRepository repository = CreateRepository();
+
+            //act
+            Contact contact = repository.Find(id);
+            contact.LastName = "Manzana";
+            repository.Update(contact);
+
+            //rearrange! verification
+            IContactRepository repositoryUpdated = CreateRepository();
+            Contact contactModified = repositoryUpdated.Find(id);
+
+            //assert
+            Console.WriteLine("**CONTACT MODIFIED**");
+            Console.WriteLine($"Updated Contact Lastname: {contactModified.LastName}");
+        }
+
         static void Get_all_should_return_6_results()
         {
             //arrange
